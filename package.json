@@ -1,0 +1,19 @@
+{
+  "name": "nodejs-ecommerce-api",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/mostafadelgouda/nodejs-ecommerce-api.git"
+  },
+  "author": "Mostafa Adel",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/mostafadelgouda/nodejs-ecommerce-api/issues"
+  },
+  "homepage": "https://github.com/mostafadelgouda/nodejs-ecommerce-api#readme",
+  "description": ""
+}
