@@ -2,6 +2,7 @@ const slugify = require("slugify");
 const asyncHandler = require("express-async-handler");
 const Category = require("../models/categoryModel");
 const ApiError = require("../utils/apiError");
+
 // @desc Get list of Categories
 // @route GET /api/v1/categories
 // @access Public
@@ -43,7 +44,7 @@ exports.updateCategory = asyncHandler(async (req, res, next) => {
   const { name } = req.body;
   const category = await Category.findOneAndUpdate(
     { _id: id },
-    { name },
+    { name, slug: slugify(name) },
     { new: true }
   );
   if (!category) {
