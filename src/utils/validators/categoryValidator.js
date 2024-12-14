@@ -1,4 +1,4 @@
-const { check, body, param } = require("express-validator");
+const { check /*, body, param*/ } = require("express-validator");
 const validatorMiddleware = require("../../middlewares/validatorMiddleware");
 
 exports.getCategoryValidator = [

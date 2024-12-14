@@ -3,20 +3,20 @@ const asyncHandler = require("express-async-handler");
 const Brand = require("../models/brandModel");
 const ApiError = require("../utils/apiError");
 
-// @desc Get list of Categories
-// @route GET /api/v1/categories
+// @desc Get list of Brands
+// @route GET /api/v1/brands
 // @access Public
-exports.getCategories = asyncHandler(async (req, res) => {
+exports.getBrands = asyncHandler(async (req, res) => {
   const limit = req.query.limit * 1 || 5;
   const page = req.query.page * 1 || 1;
-  const categories = await Brand.find({})
+  const brands = await Brand.find({})
     .skip((page - 1) * limit)
     .limit(limit);
-  res.status(201).json({ results: categories.length, page, categories });
+  res.status(201).json({ results: brands.length, page, brands });
 });
 
 // @desc Get Brand by id
-// @route GET /api/v1/categories/:id
+// @route GET /api/v1/brands/:id
 // @access Public
 exports.getBrand = asyncHandler(async (req, res, next) => {
   const { id } = req.params;
@@ -28,7 +28,7 @@ exports.getBrand = asyncHandler(async (req, res, next) => {
 });
 
 // @desc Create Brand
-// @route POST /api/v1/categories
+// @route POST /api/v1/brands
 // @access Private
 exports.createBrand = asyncHandler(async (req, res, next) => {
   const { name } = req.body;
@@ -37,7 +37,7 @@ exports.createBrand = asyncHandler(async (req, res, next) => {
 });
 
 // @desc Update Brand by id
-// @route PUT /api/v1/categories/:id
+// @route PUT /api/v1/brands/:id
 // @access Private
 exports.updateBrand = asyncHandler(async (req, res, next) => {
   const { id } = req.params;
@@ -54,7 +54,7 @@ exports.updateBrand = asyncHandler(async (req, res, next) => {
 });
 
 // @desc Delete Brand by id
-// @route DELETE /api/v1/categories/:id
+// @route DELETE /api/v1/brands/:id
 // @access Private
 exports.deleteBrand = asyncHandler(async (req, res, next) => {
   const { id } = req.params;

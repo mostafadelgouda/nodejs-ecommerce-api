@@ -1,6 +1,6 @@
 const mongoose = require("mongoose");
 
-const ProductSchema = new mongoose.Schema(
+const productSchema = new mongoose.Schema(
   {
     title: {
       type: "String",
@@ -40,10 +40,10 @@ const ProductSchema = new mongoose.Schema(
       required: [true, "Product category is required"],
       ref: "Category",
     },
-    subCategory: [
+    subcategory: [
       {
         type: mongoose.Schema.ObjectId,
-        ref: "SubCategory",
+        ref: "Subcategory",
       },
     ],
     brand: {
@@ -51,6 +51,7 @@ const ProductSchema = new mongoose.Schema(
       ref: "Brand",
     },
     ratingAverage: {
+      type: Number,
       min: [1.0, "Product rating average must be between 1.0 and 5.0"],
       max: [5.0, "Product rating average must be between 1.0 and 5.0"],
     },
@@ -63,5 +64,5 @@ const ProductSchema = new mongoose.Schema(
   { timestamps: true }
 );
 
-const ProductModel = mongoose.model("Product", ProductSchema);
+const ProductModel = mongoose.model("Product", productSchema);
 module.exports = ProductModel;
