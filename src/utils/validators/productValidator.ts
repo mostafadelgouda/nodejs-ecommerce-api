@@ -1,12 +1,13 @@
-const { check /*, body, param*/ } = require("express-validator");
-const validatorMiddleware = require("../../middlewares/validatorMiddleware");
+import { check, CustomValidator, Meta } from "express-validator";
+import { Request } from "express";
+import validatorMiddleware from "../../middlewares/validatorMiddleware";
 
-exports.getProductValidator = [
+export const getProductValidator = [
   check("id").isMongoId().withMessage("Invalid product id format"),
   validatorMiddleware,
 ];
 
-exports.createProductValidator = [
+export const createProductValidator = [
   check("title")
     .notEmpty()
     .withMessage("Product required")
@@ -38,8 +39,9 @@ exports.createProductValidator = [
     .toFloat()
     .isNumeric()
     .withMessage("Price after discount must be a number")
-    .custom((value, { req }) => {
-      if (req.body.price <= value) {
+    .custom((value, meta: Meta) => {
+      const req = meta.req as Request; // Explicitly cast meta.req to Request
+      if (value >= req.body.price) {
         throw new Error("Price after discount must be less than product price");
       }
       return true;
@@ -57,7 +59,7 @@ exports.createProductValidator = [
     .isEmpty()
     .withMessage("Category is required")
     .isMongoId()
-    .withMessage("category id format is not valid"),
+    .withMessage("Category id format is not valid"),
   check("subcategory")
     .optional()
     .isMongoId()
@@ -65,27 +67,27 @@ exports.createProductValidator = [
   check("brand")
     .optional()
     .isMongoId()
-    .withMessage("brand id format is not valid"),
+    .withMessage("Brand id format is not valid"),
   check("ratingAverage")
     .optional()
     .isNumeric()
-    .withMessage("rating average should be a number")
+    .withMessage("Rating average should be a number")
     .isLength({ min: 1, max: 5 })
-    .withMessage("rating average should be a between 1 and 5 "),
+    .withMessage("Rating average should be between 1 and 5"),
   check("ratingQuantity")
     .optional()
     .isNumeric()
-    .withMessage("rating quantity should be a number"),
+    .withMessage("Rating quantity should be a number"),
 
   validatorMiddleware,
 ];
 
-exports.deleteProductValidator = [
+export const deleteProductValidator = [
   check("id").isMongoId().withMessage("Invalid product id format"),
   validatorMiddleware,
 ];
 
-exports.updateProductValidator = [
+export const updateProductValidator = [
   check("id").isMongoId().withMessage("Invalid product id format"),
   validatorMiddleware,
 ];

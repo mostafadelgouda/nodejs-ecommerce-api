@@ -1,4 +1,4 @@
-const express = require("express");
+import { Router } from "express";
 const {
   getCategories,
   createCategory,
@@ -14,7 +14,7 @@ const {
 } = require("../utils/validators/categoryValidator");
 const subcategoriesRoute = require("./subCategoryRoute");
 
-const router = express.Router();
+const router: Router = Router();
 router.use("/:categoryId/subcategories", subcategoriesRoute);
 router
   .route("/")

@@ -1,12 +1,12 @@
-const { check /*, body, param*/ } = require("express-validator");
-const validatorMiddleware = require("../../middlewares/validatorMiddleware");
+import { check /*, body, param*/ } from "express-validator";
+import validatorMiddleware from"../../middlewares/validatorMiddleware";
 
-exports.getBrandValidator = [
+export const getBrandValidator = [
   check("id").isMongoId().withMessage("Invalid brand id format"),
   validatorMiddleware,
 ];
 
-exports.createBrandValidator = [
+export const createBrandValidator = [
   check("name")
     .notEmpty()
     .withMessage("Brand required")
@@ -15,12 +15,12 @@ exports.createBrandValidator = [
   validatorMiddleware,
 ];
 
-exports.deleteBrandValidator = [
+export const deleteBrandValidator = [
   check("id").isMongoId().withMessage("Invalid brand id format"),
   validatorMiddleware,
 ];
 
-exports.updateBrandValidator = [
+export const updateBrandValidator = [
   check("id").isMongoId().withMessage("Invalid brand id format"),
   validatorMiddleware,
 ];

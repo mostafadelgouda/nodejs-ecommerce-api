@@ -6,12 +6,12 @@ const {
   updateBrand,
   deleteBrand,
 } = require("../services/brandService");
-const {
+import {
   getBrandValidator,
   createBrandValidator,
   updateBrandValidator,
   deleteBrandValidator,
-} = require("../utils/validators/brandValidator");
+} from "../utils/validators/brandValidator";
 
 const router = express.Router();
 router.route("/").get(getBrands).post(createBrandValidator, createBrand);
