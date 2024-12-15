@@ -1,29 +1,34 @@
 import { Router } from "express";
-const {
+import {
   getCategories,
   createCategory,
   getCategory,
   updateCategory,
   deleteCategory,
-} = require("../services/categoryService");
-const {
+} from "../services/categoryService";
+import {
   getCategoryValidator,
   createCategoryValidator,
   updateCategoryValidator,
   deleteCategoryValidator,
-} = require("../utils/validators/categoryValidator");
-const subcategoriesRoute = require("./subCategoryRoute");
+} from "../utils/validators/categoryValidator";
+import subcategoriesRoute from "./subcategoryRoute";
 
 const router: Router = Router();
+
+// Nested routes for subcategories
 router.use("/:categoryId/subcategories", subcategoriesRoute);
+
+// Route for categories
 router
   .route("/")
   .get(getCategories)
-  .post(createCategoryValidator, createCategory);
+  .post(createCategoryValidator, createCategory); // Spread validators to avoid type issues
+
 router
   .route("/:id")
   .get(getCategoryValidator, getCategory)
   .put(updateCategoryValidator, updateCategory)
   .delete(deleteCategoryValidator, deleteCategory);
 
-module.exports = router;
+export default router;

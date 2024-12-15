@@ -1,6 +1,25 @@
-const mongoose = require("mongoose");
+import mongoose, {Schema, Model} from"mongoose";
+import {ICategory} from "./categoryModel"
+import {IBrand} from "./brandModel"
 
-const productSchema = new mongoose.Schema(
+export interface IProduct extends Document{
+  title: string;
+  slug: string;
+  description: string;
+  quantity: number;
+  sold: number;
+  price: number;
+  priceAfterDiscount: number;
+  colors: Array<string>;
+  imageCover: string;
+  category: mongoose.Types.ObjectId;
+  subcategory: Array<mongoose.Types.ObjectId>;
+  brand: mongoose.Types.ObjectId;
+  ratingAverage: number;
+  ratingQuantity: number;
+}
+
+const productSchema: Schema<IProduct> = new mongoose.Schema<IProduct>(
   {
     title: {
       type: "String",
@@ -56,7 +75,7 @@ const productSchema = new mongoose.Schema(
       max: [5.0, "Product rating average must be between 1.0 and 5.0"],
     },
     ratingQuantity: {
-      type: String,
+      type: Number,
       default: 0,
     },
   },
@@ -64,5 +83,5 @@ const productSchema = new mongoose.Schema(
   { timestamps: true }
 );
 
-const ProductModel = mongoose.model("Product", productSchema);
-module.exports = ProductModel;
+const ProductModel: Model<IProduct> = mongoose.model<IProduct>("Product", productSchema);
+export default ProductModel;

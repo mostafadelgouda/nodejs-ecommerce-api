@@ -1,24 +1,28 @@
-import express from "express";
-const {
+import { Router } from "express";
+import {
   getProducts,
   createProduct,
   getProduct,
   updateProduct,
   deleteProduct,
-} = require("../services/productService");
-const {
+} from "../services/productService";
+import {
   getProductValidator,
   createProductValidator,
   updateProductValidator,
   deleteProductValidator,
-} = require("../utils/validators/productValidator");
+} from "../utils/validators/productValidator";
 
-const router = express.Router();
-router.route("/").get(getProducts).post(createProductValidator, createProduct);
-router
-  .route("/:id")
+const router: Router = Router();
+
+// Routes for products
+router.route("/")
+  .get(getProducts)
+  .post(createProductValidator, createProduct); // Spread validators for middleware compatibility
+
+router.route("/:id")
   .get(getProductValidator, getProduct)
   .put(updateProductValidator, updateProduct)
   .delete(deleteProductValidator, deleteProduct);
 
-module.exports = router;
+export default router;

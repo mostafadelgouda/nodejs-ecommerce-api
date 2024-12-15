@@ -1,11 +1,11 @@
-const express = require("express");
-const {
+import { Router } from "express";
+import {
   getBrands,
   createBrand,
   getBrand,
   updateBrand,
   deleteBrand,
-} = require("../services/brandService");
+} from "../services/brandService";
 import {
   getBrandValidator,
   createBrandValidator,
@@ -13,7 +13,7 @@ import {
   deleteBrandValidator,
 } from "../utils/validators/brandValidator";
 
-const router = express.Router();
+const router = Router();
 router.route("/").get(getBrands).post(createBrandValidator, createBrand);
 router
   .route("/:id")
@@ -21,4 +21,4 @@ router
   .put(updateBrandValidator, updateBrand)
   .delete(deleteBrandValidator, deleteBrand);
 
-module.exports = router;
+export default router;

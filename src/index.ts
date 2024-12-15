@@ -1,16 +1,15 @@
 import { NextFunction, Request, Response } from "express";
 import dbConnection from "./config/database"
 import globalErrorHandling from"./middlewares/errorMiddleware";
-const express: any = require("express");
-const dotenv: any = require("dotenv");
+import express from "express";
+import dotenv from "dotenv";
+import categoryRoute from "./routes/categoryRoute";
+import subCategoryRoute from "./routes/subcategoryRoute";
+import brandRoute from "./routes/brandRoute";
+import productRoute from "./routes/productRoute";
+import ApiError from "./utils/apiError";
+
 const morgan: any = require("morgan");
-const categoryRoute: any = require("./routes/categoryRoute");
-const subCategoryRoute: any = require("./routes/subCategoryRoute");
-const brandRoute: any = require("./routes/brandRoute");
-const productRoute: any = require("./routes/productRoute");
-
-const ApiError: any = require("./utils/apiError");
-
 
 dotenv.config({ path: ".env" });
 const PORT: Number = Number(process.env.PORT || 3000);

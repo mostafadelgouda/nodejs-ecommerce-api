@@ -1,30 +1,32 @@
-import express from "express";
-const {
+import { Router } from "express";
+import {
   createFilterObject,
   setCategoryToBody,
-  createSubCategory,
-  getSubCategory,
-  getSubCategories,
-  deleteSubCategory,
-  updateSubCategory,
-} = require("../services/subCategoryService");
-const {
-  getSubCategoryValidator,
-  createSubCategoryValidator,
-  updateSubCategoryValidator,
-  deleteSubCategoryValidator,
-} = require("../utils/validators/subCategoryValidator");
+  createSubcategory,
+  getSubcategory,
+  getSubcategories,
+  deleteSubcategory,
+  updateSubcategory,
+} from "../services/subcategoryService";
+import {
+  getSubcategoryValidator,
+  createSubcategoryValidator,
+  updateSubcategoryValidator,
+  deleteSubcategoryValidator,
+} from "../utils/validators/subcategoryValidator";
 
-const router = express.Router({ mergeParams: true });
+const router: Router = Router({ mergeParams: true });
 
+// Routes for Subcategories
 router
   .route("/")
-  .post(setCategoryToBody, createSubCategoryValidator, createSubCategory)
-  .get(createFilterObject, getSubCategories);
+  .post(setCategoryToBody, createSubcategoryValidator, createSubcategory) // Spread validators
+  .get(createFilterObject, getSubcategories);
+
 router
   .route("/:id")
-  .get(getSubCategoryValidator, getSubCategory)
-  .put(updateSubCategoryValidator, updateSubCategory)
-  .delete(deleteSubCategoryValidator, deleteSubCategory);
+  .get(getSubcategoryValidator, getSubcategory) // Spread validators
+  .put(updateSubcategoryValidator, updateSubcategory)
+  .delete(deleteSubcategoryValidator, deleteSubcategory);
 
-module.exports = router;
+export default router;

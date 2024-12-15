@@ -1,12 +1,12 @@
 import { check /*, body, param*/ } from "express-validator";
 import validatorMiddleware from"../../middlewares/validatorMiddleware";
 
-export const getSubCategoryValidator = [
+export const getSubcategoryValidator = [
   check("id").isMongoId().withMessage("Invalid subcategory id format"),
   validatorMiddleware,
 ];
 
-export const createSubCategoryValidator = [
+export const createSubcategoryValidator = [
   check("name")
     .notEmpty()
     .withMessage("Subcategory required")
@@ -16,12 +16,12 @@ export const createSubCategoryValidator = [
   validatorMiddleware,
 ];
 
-export const deleteSubCategoryValidator = [
+export const deleteSubcategoryValidator = [
   check("id").isMongoId().withMessage("Invalid subcategory id format"),
   validatorMiddleware,
 ];
 
-export const updateSubCategoryValidator = [
+export const updateSubcategoryValidator = [
   check("id").isMongoId().withMessage("Invalid subcategory id format"),
   validatorMiddleware,
 ];

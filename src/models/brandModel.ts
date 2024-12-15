@@ -1,11 +1,17 @@
-const mongoose = require("mongoose");
+import mongoose, {Schema, Model} from"mongoose";
 
-const brandSchema = new mongoose.Schema(
+export interface IBrand extends Document{
+  name: string;
+  slug?: string;
+  image?: string;
+}
+
+const brandSchema: Schema<IBrand> = new Schema<IBrand>(
   {
     name: {
       type: String,
       required: [true, "Brand name required"],
-      unique: [true, "Brand name must be unique"],
+      unique: true,
       trim: true,
       minlength: [3, "Brand name is too short"],
       maxlength: [32, "Brand name is too long"],
@@ -20,6 +26,6 @@ const brandSchema = new mongoose.Schema(
   },
   { timestamps: true }
 );
-const BrandModel = mongoose.model("Brand", brandSchema);
+const BrandModel: Model<IBrand> = mongoose.model<IBrand>("Brand", brandSchema);
 
-module.exports = BrandModel;
+export default BrandModel;
