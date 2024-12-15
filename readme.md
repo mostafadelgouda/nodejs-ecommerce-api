@@ -1,6 +1,6 @@
 # Node.js Ecommerce Project
 
-This is an eCommerce web application built with Node.js, Express.js, and MongoDB. It allows users to browse products, add them to their cart, and proceed to checkout. Admins can manage the product catalog, orders, and users. The backend provides RESTful APIs for handling these operations.
+This is an eCommerce web application built with **Node.js** , **Express.js** , **MongoDB** , and **TypeScript** . It allows users to browse products, add them to their cart, and proceed to checkout. Admins can manage the product catalog, orders, and users. The backend provides RESTful APIs for handling these operations.
 
 ## Features
 
@@ -28,4 +28,3 @@ Make sure you have the following installed:
 - Node.js (LTS version)
 - npm (Node Package Manager)
 - MongoDB (locally or use a cloud instance like MongoDB Atlas)
-
